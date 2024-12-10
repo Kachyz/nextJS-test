@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from 'next/link'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,10 +27,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
       >
+        <div className="hidden sm:flex w-48 pt-5 flex-col items-center gap-y-3">
+          <Link href="/profile" className="flex flex-col justify-self-center">
+            <img 
+              className="rounded-full w-28 h-28"
+              src="https://brsc.sa.edu.au/wp-content/uploads/2018/09/placeholder-profile-sq.jpg"
+            />
+            <span className="mt-2">Carlos Estrada</span>
+          </Link>
+          <Link href="/">News</Link>
+          <Link href="/friends">Friends</Link>
+        </div>
+        <div className="mainContainer flex-1">
         {children}
+        </div>
       </body>
-    </html>
+    </html>     
   );
-}
+};
